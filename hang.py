@@ -1,6 +1,7 @@
 import random
 import string
 from sets import Set
+import sys
 
 WORDLIST_FILENAME = "palavras.txt"
 
@@ -17,7 +18,12 @@ def loadWords():
     take a while to finish.
     """
     print "Loading word list from file..."
-    inFile = open(WORDLIST_FILENAME, 'r', 0)
+    try:
+        inFile = open(WORDLIST_FILENAME, 'r', 0)
+    except IOError:
+        print "Word file not found/n"
+        print "Closing Program"
+        sys.exit(1)
     line = inFile.readline()
     wordlist = string.split(line)
     print "  ", len(wordlist), "words loaded."
